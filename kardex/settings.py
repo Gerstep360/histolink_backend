@@ -107,7 +107,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "histolink",      # Nombre de tu base de datos
         "USER": "postgres",       # Tu usuario de postgres
-        "PASSWORD": "12345678",   # Tu contraseña
+        "PASSWORD": "123456",   # Tu contraseña
         "HOST": "localhost",
         "PORT": "5432",
     }
@@ -154,6 +154,17 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Cache configuration for rate limiting
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+    },
+    "rate_limit": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/2",
+    }
+}
 
 # DRF configurations
 REST_FRAMEWORK = {
